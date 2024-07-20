@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS-Cool Song</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="shortcut icon" type="img/x-icon" href="img/logonova.png">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <navbar id="navbar">
+        <div class="navbar-container">
+            <img src="./img/logonova.png" alt="Logo" class="logo">
+            <ul class="navbar-itens">
+                <li class="navbar-item">Ajuda</li>
+                <li class="navbar-item">Baixar</li>
+                <li class="navbar-item">Acesso ao plano</li>
+                <li class="navbar-item"><a href="/formulário/formulario.html" class="navbar-link">Entrar</a></li>
+            </ul>
+        </div>
+    </navbar>
+
+    <!-- Showcase -->
+    <div id="showcase">
+        <div class="showcase-container">
+            <h2>Cool Song</h2>
+            <p>Suas músicas, seus artistas, do seu jeito!</p>
+            <input type="text" id="artistInput" placeholder="Nome do Artista">
+            <br>
+            <button class="btn-primary" onclick="searchArtist()">Pesquisar Artista</button>
+            <div id="error-message" style="color: red; display: none;">Por favor, insira um nome de artista válido.</div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="footer-content">
+            <img src="img/logonova.png" alt="" class="logo">
+            <ul class="footer-menu">
+                <br>
+                <p>Empresa</p>
+                <br>
+                <li class="footer-menu-item">
+                    Sobre
+                </li>
+                <li class="footer-menu-item">
+                    Empregos
+                </li>
+                <li class="footer-menu-item">
+                    For the record
+                </li>
+            </ul>
+            <ul class="footer-menu">
+                <br>
+                <p>Comunidades</p>
+                <br>
+                <li class="footer-menu-item">
+                    Para artistas
+                </li>
+                <li class="footer-menu-item">
+                    Desenvolvedores
+                </li>
+                <li class="footer-menu-item">
+                    Marcas
+                </li>
+                <li class="footer-menu-item">
+                    Investidores
+                </li>
+                <li class="footer-menu-item">
+                    Fornecedores
+                </li>
+            </ul>
+            <ul class="footer-menu">
+                <br>
+                <p>Links úteis</p>
+                <br>
+                <li class="footer-menu-item">
+                    Ajuda
+                </li>
+                <li class="footer-menu-item">
+                    Player da Web
+                </li>
+                <li class="footer-menu-item">
+                    Aplicativo móvel grátis
+                </li>
+            </ul>
+
+            <div class="socials">
+                <i class="fa-brands fa-instagram"></i>
+                <i class="fa-brands fa-twitter"></i>
+                <i class="fa-brands fa-facebook"></i>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://kit.fontawesome.com/42ff98f1b1.js" crossorigin="anonymous"></script>
+    <script src="app.js"></script>
+</body>
+</html>
