@@ -181,3 +181,29 @@ body{
     border-radius: 10px;
     cursor: pointer;
 }
+
+@media screen and (max-width: 1330px){
+    .from-image {
+       display: none;
+    }
+    .container {
+       width: 50%;
+    }
+    .form {
+       width: 100%;
+    }
+   }
+   
+   @media screen and (max-width: 1064px){
+    .container{
+    width: 90%;
+    height: auto;
+    }
+   
+    .input-group{
+    flex-direction: column;
+    overflow-y: scroll;
+    flex-wrap: nowrap;
+    max-height: 10rem;
+    }
+   }

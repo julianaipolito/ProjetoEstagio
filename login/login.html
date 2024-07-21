@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <title>Login</title>
+    <link rel="shortcut icon" type="img/x-icon" href="./assets/img/logonova.png">
+</head>
+<body>
+    <div class="container">
+        <div class="form-image">
+            <img src="assets/img/music-animate.svg" alt="Imagem de música animada">
+        </div>
+        <div class="form">
+            <form id="loginForm" action="/tela-de-confirmacao/conf.html" method="POST">
+                <div class="form-header">
+                    <div class="title">
+                        <h1>Login</h1>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <div class="input-box">
+                        <label for="username">Usuário:</label>
+                        <input id="username" type="text" name="username" placeholder="Digite seu nome de usuário" required>
+                    </div>
+                    <div class="input-box">
+                        <label for="email">Email:</label>
+                        <input id="email" type="email" name="email" placeholder="Digite seu email" required>
+                    </div>
+                    <div class="input-box">
+                        <label for="password">Senha:</label>
+                        <input id="password" type="password" name="password" placeholder="Digite sua senha" required>
+                    </div>
+                </div>
+                <div class="salvar-dados">
+                    <button type="submit">Entrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            localStorage.setItem('username', username);
+            window.location.href = '/tela-de-confirmacao/conf.html';
+        });
+    </script>
+</body>
+</html>

@@ -161,7 +161,7 @@ body{
 }
 
 .salvardados button:hover {
-    background: #b8cf48;;
+    background: #b8cf48;
 }
 
 .salvardados button{
@@ -196,4 +196,73 @@ body{
  flex-wrap: nowrap;
  max-height: 10rem;
  }
+}
+/* Estilos para o modal */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0, 0, 0, 0.4); 
+    padding-top: 60px; 
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto; 
+    padding: 20px;
+    border: 2px solid red; /* Borda vermelha */
+    border-radius: 10px; /* Bordas arredondadas */
+    width: 80%;
+    max-width: 500px;
+    text-align: center;
+}
+
+.close {
+    display: none; /* Remover a opção de fechar */
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+.modal-content button {
+    border: none;
+    background-color: #b8cf48; 
+    color: white;
+    padding: 0.8rem 2rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    margin: 1rem 0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+/* Estilos para o botão "Buscar Custo" */
+.fetch-cost-button {
+    background-color: #fde; /* Cor de fundo azul */
+    color: #ffffff; /* Cor do texto branca */
+    border: center; /* Sem borda */
+    padding: 10px 20px; /* Espaçamento interno */
+    font-size: 16px; /* Tamanho da fonte */
+    cursor: pointer; /* Mãozinha ao passar o mouse */
+    border-radius: 15px; /* Bordas arredondadas */
+    transition: background-color 0.3s ease; /* Transição suave para a cor de fundo */
+}
+
+.fetch-cost-button:hover {
+    background-color: #0bc46e; /* Cor de fundo ao passar o mouse */
+}
+
+.fetch-cost-button:focus {
+    outline: none; /* Remove o contorno padrão ao focar */
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5); /* Sombra ao focar */
 }
