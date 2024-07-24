@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 * {
-    padding:0;
-    margin:0;
-    box-sizing:border-box;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
     font-family: 'Inter', sans-serif;
 }
 
-body{
+body {
     width: 100%;
     height: 100vh;
     display: flex;
@@ -19,8 +19,8 @@ body{
     width: 80%;
     height: 80vh;
     display: flex;
-    box-shadow: 5px 5px 10px rgba(0,0,0, .212);
-}      
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, .212);
+}
 
 .form-image {
     width: 50%;
@@ -51,51 +51,21 @@ body{
     justify-content: space-between;
 }
 
-.login-button {
-    display: flex;
-    align-items: center;
-}
-
-.login-button button {
-    border: none;
-    background-color: #D3F527;
-    padding: 0.4rem 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.login-button button:hover {
-    background-color: #acc439;
-}
-
-.login-button button a {
-    text-decoration: none;
-    font-weight: 500;
-    color: #fff;
-}
-
 .form-header h1::after {
     content: '';
     display: block;
     width: 5rem;
     height: 0.3rem;
-    background-color:#D3F527;
-    margin:0 auto;
+    background-color: #D3F527;
+    margin: 0 auto;
     position: absolute;
     border-radius: 10px;
-}
-
-.input-group {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 1rem 0;
 }
 
 .input-box {
     display: flex;
     flex-direction: column;
-    margin-bottom: 1.1rem;
+    margin-bottom: 1.5rem;
 }
 
 .input-box input {
@@ -103,26 +73,26 @@ body{
     padding: 0.8rem 1.2rem;
     border: none;
     border-radius: 10px;
-    box-shadow: 1px 1px 6px #0000001c;
+    box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.15); /* Tornando a sombra mais escura */
+    background-color: #f2f2f2; /* Ajustando a cor de fundo para ser menos clara */
 }
 
 .input-box input:hover {
-    background-color: #eeeeee;
+    background-color: #e0e0e0;
 }
 
 .input-box input:focus-visible {
     outline: 1px solid #D3F527;
 }
 
-.input-box label,
-.gender-title, h6 {
+.input-box label {
     font-size: 0.75rem;
     font-weight: 600;
-    color:#000000c0;
+    color: #000000c0;
 }
 
 .input-box input::placeholder {
-    color:#0000001c;
+    color: #0000006c; /* Ajustando a cor do placeholder para ser mais visível */
 }
 
 .salvar-dados {
@@ -131,9 +101,9 @@ body{
 }
 
 .salvar-dados button {
-    width: 20%;
-    margin-top:2.5rem;
-    border:center;
+    width: 50%; /* Ajuste a largura conforme necessário */
+    margin-top: 2.5rem;
+    border: center;
     background-color: #fde;
     padding: 0.62rem;
     border-radius: 10px;
@@ -141,7 +111,7 @@ body{
 }
 
 .salvar-dados button:hover {
-    background: #b8cf48;;
+    background: #b8cf48;
 }
 
 .salvar-dados button {
@@ -151,28 +121,23 @@ body{
     color: #fff;
 }
 
-@media screen and (max-width: 1330px){
- .form-image {
-    display: none;
- }
- .container {
-    width: 50%;
- }
- .form {
-    width: 100%;
- }
+@media screen and (max-width: 1330px) {
+    .form-image {
+        display: none;
+    }
+
+    .container {
+        width: 50%;
+    }
+
+    .form {
+        width: 100%;
+    }
 }
 
-@media screen and (max-width: 1064px){
- .container {
-    width: 90%;
-    height: auto;
- }
-
- .input-group {
-    flex-direction: column;
-    overflow-y: scroll;
-    flex-wrap: nowrap;
-    max-height: 10rem;
- }
+@media screen and (max-width: 1064px) {
+    .container {
+        width: 90%;
+        height: auto;
+    }
 }

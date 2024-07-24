@@ -6,49 +6,13 @@
     <link rel="stylesheet" href="./css/style.css">
     <title>Formulário de Cadastro</title>
     <link rel="shortcut icon" type="img/x-icon" href="./assets/img/logonova.png">
-    <style>
-        .modal {
-            display: none; /* Oculto por padrão */
-            position: fixed; /* Fica no topo da página */
-            z-index: 1; /* Fica sobre outros elementos */
-            left: 0;
-            top: 0;
-            width: 100%; /* Largura total */
-            height: 100%; /* Altura total */
-            overflow: auto; /* Ativa a rolagem se necessário */
-            background-color: rgb(0,0,0); /* Cor de fundo preta */
-            background-color: rgba(0,0,0,0.4); /* Fundo preto com opacidade */
-        }
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto; /* Centraliza o modal */
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%; /* Largura do modal */
-        }
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        .popularidade {
-            margin-top: 10px;
-        }
-    </style>
 </head>
 <body>
     <div class="container">
         <div class="form-image">
             <img src="assets/img/music-animate.svg" alt="Imagem de música animada">
         </div>
-        <form id="cadastroForm" action="/tela-de-confirmacao/conf.html" method="POST">
+        <form id="cadastroForm" action="./tela-de-confirmacao/conf.html" method="POST">
             <div class="form-header">
                 <div class="title">
                     <h1>Cadastre-se</h1>
@@ -65,11 +29,11 @@
                 </div>
                 <div class="input-box">
                     <label for="fee">Cachê:</label>
-                    <button type="button" class="fetch-cost-button" onclick="fetchArtistPopularity()">Buscar Custo</button>
-                </div>
-                <div class="popularidade">
-                    <p id="popularityDisplay">Valor do cachê: </p>
-                </div>
+                    <div class="fetch-cost-container">
+                        <button type="button" class="fetch-cost-button" onclick="fetchArtistPopularity()">Buscar Custo</button>
+                        <p id="popularityDisplay" class="cache-value">Valor do cachê: </p>
+                    </div>
+                </div>                
                 <div class="input-box">
                     <label for="Data-evento">Data do Evento:</label>
                     <input id="Data-evento" type="date" name="Data-evento" required>
@@ -81,14 +45,6 @@
                 <div class="input-box">
                     <label for="number">Telefone para contato:</label>
                     <input id="number" type="tel" name="number" placeholder="(xx) xxxx-xxxx" required>
-                </div>
-                <div class="input-box">
-                    <label for="password">Senha:</label>
-                    <input id="password" type="password" name="password" placeholder="Digite sua senha" required>
-                </div>
-                <div class="input-box">
-                    <label for="Confirmpassword">É assinante do nosso plano?:</label>
-                    <input id="Confirmpassword" type="password" name="Confirmpassword" placeholder="Digite seu ID de acesso">
                 </div>
             </div>
             <div class="gender-inputs">
@@ -148,49 +104,51 @@
         }
 
         function fetchArtistPopularity() {
-            const artistName = document.getElementById('Artista').value.trim();
-            if (!artistName) {
-                alert('Por favor, insira o nome do artista.');
-                return;
+    const artistName = document.getElementById('Artista').value.trim();
+    if (!artistName) {
+        alert('Por favor, insira o nome do artista.');
+        return;
+    }
+
+    const CLIENT_ID = 'a8c71803edf24efe981c02220682134d';
+    const CLIENT_SECRET = '648fa4f4eb3e444590ed428121c34d7c';
+
+    function getToken() {
+        const authHeader = btoa(`${CLIENT_ID}:${CLIENT_SECRET}`);
+        return fetch('https://accounts.spotify.com/api/token', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Basic ${authHeader}`,
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: 'grant_type=client_credentials'
+        })
+        .then(response => response.json())
+        .then(data => data.access_token)
+        .catch(error => console.error('Erro ao obter token:', error));
+    }
+
+    getToken().then(accessToken => {
+        fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(artistName)}&type=artist`, {
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
             }
-
-            const CLIENT_ID = 'a8c71803edf24efe981c02220682134d';
-            const CLIENT_SECRET = '648fa4f4eb3e444590ed428121c34d7c';
-
-            function getToken() {
-                const authHeader = btoa(`${CLIENT_ID}:${CLIENT_SECRET}`);
-                return fetch('https://accounts.spotify.com/api/token', {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': `Basic ${authHeader}`,
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
-                    body: 'grant_type=client_credentials'
-                })
-                .then(response => response.json())
-                .then(data => data.access_token)
-                .catch(error => console.error('Erro ao obter token:', error));
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.artists.items.length > 0) {
+                const artist = data.artists.items[0];
+                const popularity = artist.popularity * 100;
+                // Formatar o valor como moeda
+                const formattedPopularity = `R$ ${popularity.toFixed(2).replace('.', ',')}`;
+                document.getElementById('popularityDisplay').textContent = `Valor do cachê: ${formattedPopularity}`;
+            } else {
+                document.getElementById('popularityDisplay').textContent = 'Artista não encontrado.';
             }
-
-            getToken().then(accessToken => {
-                fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(artistName)}&type=artist`, {
-                    headers: {
-                        'Authorization': `Bearer ${accessToken}`
-                    }
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.artists.items.length > 0) {
-                        const artist = data.artists.items[0];
-                        const popularity = artist.popularity * 100;
-                        document.getElementById('popularityDisplay').textContent = `Valor do cachê: ${popularity}`;
-                    } else {
-                        alert('Artista não encontrado.');
-                    }
-                })
-                .catch(error => console.error('Erro ao buscar dados do artista:', error));
-            });
-        }
+        })
+        .catch(error => console.error('Erro ao buscar artista:', error));
+    });
+}
     </script>
 </body>
 </html>
